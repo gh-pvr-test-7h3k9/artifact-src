@@ -12,7 +12,7 @@ jobs:
       - uses: actions/attest-build-provenance@v1
         with:
           subject-path: evil.bin
-      - uses: actions/uplo
+      - uses: actions/uploload-artifact@v4
         with:
           name: evil
           path: evil.bin
