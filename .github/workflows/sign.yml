@@ -1,0 +1,18 @@
+name: sign
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
+    steps:
+      - run: echo EVIL-backdoor-payload > evil.bin
+      - uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: evil.bin
+      - uses: actions/uplo
+        with:
+          name: evil
+          path: evil.bin
